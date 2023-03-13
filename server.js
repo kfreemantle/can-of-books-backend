@@ -3,6 +3,7 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const mongoose = require('mongoose');
 
 
 // connecting the DB via mongoose
@@ -24,10 +25,14 @@ app.use(cors());
 
 const PORT = process.env.PORT || 3001;
 
+
+// Routes 
 app.get('/test', (request, response) => {
 
   response.send('test request received')
 
 })
 
+
+// Listen
 app.listen(PORT, () => console.log(`listening on ${PORT}`));
