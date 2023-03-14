@@ -23,11 +23,11 @@ const app = express();
 // CORS invocation here
 app.use(cors());
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 1337;
 
 
 // Routes 
-app.get('/test', (request, response) => {
+app.get('/', (request, response) => {
 
   response.send('test request received')
 
