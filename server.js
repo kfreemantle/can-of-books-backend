@@ -31,10 +31,13 @@ const PORT = process.env.PORT || 1337;
 
 
 // Routes 
-app.get('/', (request, response) => {
-  response.status(200).send('Server is live!');
-});
 
+// test route
+// app.get('/', (request, response) => {
+//   response.status(200).send('Server is live!');
+// });
+
+// books route
 app.get('/books', getBooks);
 async function getBooks(req, res, next) {
   try {
