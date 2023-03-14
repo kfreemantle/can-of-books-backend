@@ -3,6 +3,9 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const Books = require('./modules/books.js');
+
+// we tap Mongoose here
 const mongoose = require('mongoose');
 
 
@@ -23,15 +26,33 @@ const app = express();
 // CORS invocation here
 app.use(cors());
 
+// if port 1337 shows up we know something is awry
 const PORT = process.env.PORT || 1337;
 
 
 // Routes 
 app.get('/', (request, response) => {
+  response.status(200).send('Server is live!');
+});
 
-  response.send('test request received')
+app.get('/books', getBooks);
+async function getBooks(req, res, next) {
+  try {
+    let results = await Books.find({});
+    res.status(200).send(results);
+  } catch(err) {
+    next(err);
+  }
+}
 
-})
+app.get('*', (request, response) => {
+  response.status(404).send('Server not available');
+});
+
+// Error handling
+app.use((error, request, response, next) => {
+  res.status(500).send(error.message);
+});
 
 
 // Listen
