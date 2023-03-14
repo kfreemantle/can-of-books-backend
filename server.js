@@ -27,7 +27,7 @@ const app = express();
 app.use(cors());
 
 // if port 1337 shows up we know something is awry
-const PORT = process.env.PORT || 1337;
+const PORT = process.env.PORT || 3002;
 
 
 // Routes 
