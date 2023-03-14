@@ -3,12 +3,19 @@
 require('dotenv').config();
 
 const mongoose = require('mongoose');
-mongoose.connect(process.env.DB_URL);
 
 // connecting to the Books schema
 const Books = require('./modules/books.js');
 
 async function seed() {
+
+  // mongoose.connect needs to live in the seed function
+  mongoose.connect(process.env.MONGO_DB_URL);
+  const db = mongoose.connection;
+  db.on('error', console.error.bind(console, 'connection error:'));
+  db.once('open', function () {
+    console.log('Mongoose is connected');
+  });
 
   await Books.create({
     title: 'Three Men In A Boat (To Say Nothing of the Dog',
