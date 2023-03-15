@@ -42,7 +42,7 @@ app.get('/', (request, response) => {
 // books route
 app.get('/books', getBooks);
 app.post('/books', postBooks);
-app.delete('/books/:id', deleteBooks);
+app.delete('/books/:id', deleteBooks);  // delete needs the :id in order to target a unique book
 
 async function getBooks(req, res, next) {
   try {
@@ -51,12 +51,12 @@ async function getBooks(req, res, next) {
   } catch(err) {
     next(err);
   }
-}
+}  // getBooks is for finding books already in the DB
 
 async function postBooks(req, res, next) {
   try {
     let createdBook = await Books.create(req.body);
-    res.status(200).send(createdBook);
+    res.status(201).send(createdBook); // 201: Created success
   } catch(err) {
     next(err);
   }
@@ -73,15 +73,15 @@ async function deleteBooks(req, res, next) {
 }
 
 app.get('*', (request, response) => {
-  response.status(404).send('Server not available');
+  response.status(404).send('Server not available, book not found.');
 });
 
 
 
 // Error handling
 app.use((error, request, response, next) => {
-  res.status(500).send(error.message);
-});
+  response.status(500).send(error.message);
+});  // I think this is broken
 
 
 // Listen
