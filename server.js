@@ -75,16 +75,17 @@ app.put('/books/:id', bookShelf.putBooks);
 //   }
 // }
 
+
 app.get('*', (request, response) => {
-  response.status(404).send('Server not available');
+  response.status(404).send('Server not available, book not found.');
 });
 
 
 
 // Error handling middleware, not clear how this works
 app.use((error, request, response, next) => {
-  res.status(500).send(error.message);
-});
+  response.status(500).send(error.message);
+});  // I think this is broken
 
 
 // Listen
