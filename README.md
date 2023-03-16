@@ -73,4 +73,8 @@ Finish time: _____
 Actual time needed to complete: _____
 
 ## Credit and Collaborations
-<!-- Give credit (and a link) to other people or resources that helped you build this application. -->
+
+- Thank you to Sheyna Watkins, as well as TAs Tony Regaldo and Tammy Do for help getting lab 11 working.
+
+- I referred to the code of Yuri Hlukhyi and Casey Glidewell, a previous cohort at Codefellows, to get unstuck on lab 13: https://github.com/Paired-programing/Can-Of-Books-Backend
+
